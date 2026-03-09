@@ -1,0 +1,80 @@
+---
+interface Props {
+  embedHtml: string;
+}
+
+const { embedHtml } = Astro.props;
+---
+
+<div id="ig-widget-root" class="ig-widget-lazy" data-embed={embedHtml}>
+  <p class="ig-placeholder">Cargando Instagram…</p>
+</div>
+
+<script>
+  function initInstagram() {
+    const root = document.getElementById("ig-widget-root");
+    if (!root) return;
+
+    const embedHtml = root.dataset.embed;
+    if (!embedHtml) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          observer.disconnect();
+          loadEmbed(root, embedHtml);
+        });
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(root);
+  }
+
+  function loadEmbed(root: HTMLElement, html: string) {
+    root.innerHTML = "";
+    const template = document.createElement("template");
+    template.innerHTML = html;
+
+    const fragment = template.content;
+
+    // Insert non-script nodes first
+    const nodes = Array.from(fragment.childNodes);
+    const scripts: HTMLScriptElement[] = [];
+
+    nodes.forEach((node) => {
+      if (node instanceof HTMLScriptElement) {
+        scripts.push(node);
+      } else {
+        root.appendChild(node.cloneNode(true));
+      }
+    });
+
+    // Recreate scripts so they execute
+    scripts.forEach((orig) => {
+      const s = document.createElement("script");
+      if (orig.src) s.src = orig.src;
+      if (orig.async) s.async = true;
+      if (orig.defer) s.defer = true;
+      if (orig.textContent) s.textContent = orig.textContent;
+      document.body.appendChild(s);
+    });
+  }
+
+  initInstagram();
+  document.addEventListener("astro:after-swap", initInstagram);
+</script>
+
+<style>
+  .ig-widget-lazy {
+    min-height: 300px;
+  }
+  .ig-placeholder {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 300px;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    border-radius: var(--radius);
+  }
+</style>

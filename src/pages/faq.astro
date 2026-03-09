@@ -1,0 +1,18 @@
+---
+import Layout from "../components/Layout.astro";
+import FAQ from "../components/FAQ.astro";
+import { getCollection } from "astro:content";
+
+const faqItems = (await getCollection("faq"))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .map((f) => ({ question: f.data.question, answer: f.data.answer }));
+---
+
+<Layout title="Preguntas frecuentes" description="Resuelve tus dudas sobre nuestros servicios de nutrición y entrenamiento.">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Preguntas frecuentes</h1>
+      <FAQ items={faqItems} />
+    </div>
+  </section>
+</Layout>

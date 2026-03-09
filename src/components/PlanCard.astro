@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  price: string;
+  period: string;
+  features: string[];
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const { title, price, period, features, ctaLabel, ctaHref } = Astro.props;
+---
+
+<article class="plan-card card">
+  <h3 class="plan-title">{title}</h3>
+  <div class="plan-price">
+    <span class="price-amount">{price}</span>
+    <span class="price-period">/ {period}</span>
+  </div>
+  <ul class="plan-features">
+    {features.map((f) => <li>{f}</li>)}
+  </ul>
+  <a href={ctaHref} class="btn btn-primary plan-cta">{ctaLabel}</a>
+</article>
+
+<style>
+  .plan-card {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+  }
+  .plan-title { font-size: 1.25rem; margin-bottom: .75rem; color: var(--color-primary-dark); }
+  .plan-price { margin-bottom: 1.25rem; }
+  .price-amount { font-size: 2rem; font-weight: 700; color: var(--color-primary); }
+  .price-period { font-size: .95rem; color: var(--color-text-muted); }
+  .plan-features {
+    list-style: none; width: 100%; text-align: left; margin-bottom: 1.5rem;
+    flex: 1;
+  }
+  .plan-features li {
+    padding: .4rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: .95rem;
+  }
+  .plan-features li::before { content: "✓ "; color: var(--color-accent); font-weight: 700; }
+  .plan-cta { width: 100%; }
+</style>

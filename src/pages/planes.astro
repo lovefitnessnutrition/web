@@ -1,0 +1,32 @@
+---
+import Layout from "../components/Layout.astro";
+import PlanCard from "../components/PlanCard.astro";
+import { getCollection } from "astro:content";
+
+const planes = (await getCollection("planes")).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+---
+
+<Layout title="Planes" description="Descubre nuestros planes de nutrición y entrenamiento personalizados.">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Nuestros planes</h1>
+      <p style="color:var(--color-text-muted);margin-bottom:2rem;">
+        Elige el plan que mejor se adapte a tus objetivos. Todos incluyen seguimiento personalizado.
+      </p>
+      <div class="grid grid-3">
+        {planes.map((p) => (
+          <PlanCard
+            title={p.data.title}
+            price={p.data.price}
+            period={p.data.period}
+            features={p.data.features}
+            ctaLabel={p.data.ctaLabel}
+            ctaHref={p.data.ctaHref}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

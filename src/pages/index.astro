@@ -1,0 +1,142 @@
+---
+import Layout from "../components/Layout.astro";
+import Hero from "../components/Hero.astro";
+import PlanCard from "../components/PlanCard.astro";
+import TeamCard from "../components/TeamCard.astro";
+import Reviews from "../components/Reviews.astro";
+import InstagramWidgetLazy from "../components/InstagramWidgetLazy.astro";
+import FAQ from "../components/FAQ.astro";
+import CalComLazy from "../components/CalComLazy.astro";
+import GoogleMapEmbed from "../components/GoogleMapEmbed.astro";
+import { getCollection } from "astro:content";
+import { site } from "../config/site";
+import { buildWhatsAppLink } from "../utils/whatsapp";
+
+const planes = (await getCollection("planes")).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+const equipo = (await getCollection("equipo")).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+const faqItems = (await getCollection("faq"))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .map((f) => ({ question: f.data.question, answer: f.data.answer }));
+
+const waLink = buildWhatsAppLink(site.whatsappNumberMain, site.whatsappDefaultMessage);
+---
+
+<Layout>
+  <!-- 1) Hero -->
+  <Hero />
+
+  <!-- 2) Planes -->
+  <section class="section" id="planes">
+    <div class="container">
+      <h2 class="section-title">Nuestros planes</h2>
+      <div class="grid grid-3">
+        {planes.map((p) => (
+          <PlanCard
+            title={p.data.title}
+            price={p.data.price}
+            period={p.data.period}
+            features={p.data.features}
+            ctaLabel={p.data.ctaLabel}
+            ctaHref={p.data.ctaHref}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) Equipo -->
+  <section class="section" id="equipo" style="background:var(--color-bg-alt);">
+    <div class="container">
+      <h2 class="section-title">Nuestro equipo</h2>
+      <div class="grid grid-2">
+        {equipo.map((m, i) => (
+          <TeamCard
+            name={m.data.name}
+            role={m.data.role}
+            bio={m.data.bio}
+            specialties={m.data.specialties}
+            photo={m.data.photo}
+            whatsappNumber={m.data.whatsappNumber}
+            eager={i === 0}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4) FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <FAQ items={faqItems} />
+    </div>
+  </section>
+
+  <!-- 5) Reserva tu cita -->
+  <section class="section" id="cal-booking" style="background:var(--color-bg-alt);">
+    <div class="container">
+      <h2 class="section-title">Reserva tu cita</h2>
+      <CalComLazy url={site.calUrl} />
+    </div>
+  </section>
+
+  <!-- 6) Instagram -->
+  <section class="section" id="instagram" style="background:var(--color-bg-alt);">
+    <div class="container">
+      <h2 class="section-title">Síguenos en Instagram</h2>
+      <InstagramWidgetLazy embedHtml={site.instagramWidgetEmbedHtml} />
+      <p style="margin-top:1rem;text-align:center;">
+        <a href={site.instagramProfileUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          Ver perfil en Instagram
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 7) Reseñas -->
+  <section class="section" id="resenas">
+    <div class="container">
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <Reviews />
+    </div>
+  </section>
+
+  <!-- 8) Contacto + Mapa -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">Contacto</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p><strong>📍 Dirección:</strong> {site.addressText}</p>
+          <p><strong>📞 Teléfono:</strong> <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a></p>
+          <p><strong>✉️ Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+          <p>
+            <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:.75rem;">
+              💬 Escríbenos por WhatsApp
+            </a>
+          </p>
+        </div>
+        <GoogleMapEmbed src={site.googleMapsEmbedSrc} />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .contact-info {
+    display: flex; flex-direction: column; gap: .6rem; font-size: 1rem;
+  }
+  @media (max-width: 700px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>

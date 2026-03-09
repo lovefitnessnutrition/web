@@ -1,0 +1,32 @@
+---
+import Layout from "../components/Layout.astro";
+import TeamCard from "../components/TeamCard.astro";
+import { getCollection } from "astro:content";
+
+const equipo = (await getCollection("equipo")).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+---
+
+<Layout title="Equipo" description="Conoce a nuestro equipo de nutricionistas y entrenadores personales.">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Nuestro equipo</h1>
+      <p style="color:var(--color-text-muted);margin-bottom:2rem;">
+        Profesionales titulados comprometidos con tu salud y bienestar.
+      </p>
+      <div class="grid grid-2">
+        {equipo.map((m) => (
+          <TeamCard
+            name={m.data.name}
+            role={m.data.role}
+            bio={m.data.bio}
+            specialties={m.data.specialties}
+            photo={m.data.photo}
+            whatsappNumber={m.data.whatsappNumber}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

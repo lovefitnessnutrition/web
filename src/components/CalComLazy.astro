@@ -1,0 +1,104 @@
+---
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+---
+
+<div id="cal-container" class="cal-lazy" data-cal-url={url}>
+  <p class="cal-placeholder">Cargando calendario…</p>
+</div>
+
+<script>
+  function initCal() {
+    const container = document.getElementById("cal-container");
+    if (!container) return;
+
+    const calUrl = container.dataset.calUrl;
+    if (!calUrl) return;
+
+    // Extract the calLink path (e.g. "llalu/revision") from the full URL
+    const calLink = calUrl.replace(/^https?:\/\/cal\.com\//, "");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          observer.disconnect();
+          loadAndMount(container, calLink);
+        });
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(container);
+  }
+
+  function loadAndMount(el: HTMLElement, calLink: string) {
+    el.innerHTML = "";
+
+    const w = window as any;
+
+    // Cal.com embed bootstrap: set up the command queue BEFORE the script loads
+    (function (C: any, A: string, L: string) {
+      const p = function (a: any, ar: any) { a.q.push(ar); };
+      const d = C.document;
+      C.Cal = C.Cal || function () {
+        const cal = C.Cal;
+        const ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = api;
+            p(api, ar);
+          } else {
+            p(cal, ar);
+          }
+          return;
+        }
+        p(cal, ar);
+      };
+    })(w, "https://app.cal.com/embed/embed.js", "init");
+
+    w.Cal("init", { origin: "https://cal.com" });
+
+    w.Cal("inline", {
+      elementOrSelector: el,
+      calLink: calLink,
+      layout: "month_view",
+    });
+
+    w.Cal("ui", {
+      styles: { branding: { brandColor: "#2d6a4f" } },
+      hideEventTypeDetails: false,
+      layout: "month_view",
+    });
+  }
+
+  initCal();
+  document.addEventListener("astro:after-swap", initCal);
+</script>
+
+<style>
+  .cal-lazy {
+    min-height: 650px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .cal-placeholder {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 650px;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    border-radius: var(--radius);
+  }
+</style>

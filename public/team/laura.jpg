@@ -1,0 +1,5 @@
+<!-- Placeholder: reemplazar con la foto real del miembro del equipo -->
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
+  <rect width="280" height="280" fill="#e8e8e8"/>
+  <text x="140" y="150" text-anchor="middle" font-size="20" fill="#999" font-family="system-ui">Foto</text>
+</svg>

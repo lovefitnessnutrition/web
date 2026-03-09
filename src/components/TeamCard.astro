@@ -1,0 +1,47 @@
+---
+import { buildWhatsAppLink } from "../utils/whatsapp";
+
+interface Props {
+  name: string;
+  role: string;
+  bio: string;
+  specialties: string[];
+  photo: string;
+  whatsappNumber: string;
+}
+
+const { name, role, bio, specialties, photo, whatsappNumber } = Astro.props;
+const waLink = buildWhatsAppLink(whatsappNumber, `Hola ${name}, quiero información.`);
+---
+
+<article class="team-card card">
+  <img src={photo} alt={`Foto de ${name}`} class="team-photo" loading="lazy" decoding="async" width="280" height="280" />
+  <h3 class="team-name">{name}</h3>
+  <p class="team-role">{role}</p>
+  <p class="team-bio">{bio}</p>
+  <div class="team-specialties">
+    {specialties.map((s) => <span class="tag">{s}</span>)}
+  </div>
+  <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
+    💬 Contactar
+  </a>
+</article>
+
+<style>
+  .team-card {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+  }
+  .team-photo {
+    width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
+    margin-bottom: 1rem; background: var(--color-bg-alt);
+  }
+  .team-name { font-size: 1.15rem; margin-bottom: .25rem; }
+  .team-role { color: var(--color-primary); font-weight: 600; margin-bottom: .75rem; font-size: .95rem; }
+  .team-bio { font-size: .9rem; color: var(--color-text-muted); margin-bottom: 1rem; }
+  .team-specialties { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin-bottom: 1rem; }
+  .tag {
+    background: var(--color-bg-alt); border: 1px solid var(--color-border);
+    padding: .2rem .6rem; border-radius: 20px; font-size: .8rem;
+  }
+  .team-wa { width: 100%; }
+</style>
