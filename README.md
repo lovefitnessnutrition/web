@@ -34,14 +34,28 @@ Los archivos estáticos se generan en `dist/`.
 
 ## Despliegue en Cloudflare Pages
 
-1. Conecta el repositorio en [Cloudflare Pages](https://dash.cloudflare.com/).
-2. Configura:
+### Opción A – Git conectado (recomendado)
+
+1. Ve al [dashboard de Cloudflare](https://dash.cloudflare.com/) → **Compute (Workers) > Workers & Pages** → **Create** → pestaña **Pages** → conecta tu repositorio Git.
+2. Configura el proyecto:
+   - **Framework preset:** `Astro`
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
 3. En **Settings → Environment variables** añade:
    - `GOOGLE_MAPS_API_KEY` = tu clave de API de Google (con Places API habilitada)
+4. Haz clic en **Save and Deploy**.
 
 La carpeta `functions/` se detecta automáticamente para las Pages Functions.
+
+### Opción B – CLI con Wrangler
+
+```bash
+# Previsualizar con Cloudflare Pages localmente (incluye Functions)
+npm run pages:dev
+
+# Desplegar manualmente
+npm run pages:deploy
+```
 
 ## Configuración
 
