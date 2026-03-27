@@ -4,8 +4,10 @@ import GoogleMapEmbed from "../components/GoogleMapEmbed.astro";
 import CalComLazy from "../components/CalComLazy.astro";
 import { site } from "../config/site";
 import { buildWhatsAppLink } from "../utils/whatsapp";
+import { buildTelegramLink } from "../utils/telegram";
 
 const waLink = buildWhatsAppLink(site.whatsappNumberMain, site.whatsappDefaultMessage);
+const tgLink = buildTelegramLink(site.whatsappNumberMain);
 ---
 
 <Layout title="Contacto" description="Ponte en contacto con nosotros. WhatsApp, email, teléfono y dirección.">
@@ -27,6 +29,12 @@ const waLink = buildWhatsAppLink(site.whatsappNumberMain, site.whatsappDefaultMe
             <h3>💬 WhatsApp</h3>
             <a href={waLink} target="_blank" rel="noopener noreferrer">
               Escríbenos por WhatsApp
+            </a>
+          </div>
+          <div class="contact-item">
+            <h3>✈️ Telegram</h3>
+            <a href={tgLink} target="_blank" rel="noopener noreferrer">
+              Escríbenos por Telegram
             </a>
           </div>
           <div class="contact-item">

@@ -1,5 +1,6 @@
 ---
 import { buildWhatsAppLink } from "../utils/whatsapp";
+import { buildTelegramLink } from "../utils/telegram";
 
 interface Props {
   name: string;
@@ -12,6 +13,7 @@ interface Props {
 
 const { name, role, bio, specialties, photo, whatsappNumber } = Astro.props;
 const waLink = buildWhatsAppLink(whatsappNumber, `Hola ${name}, quiero información.`);
+const tgLink = buildTelegramLink(whatsappNumber);
 ---
 
 <article class="team-card card">
@@ -22,9 +24,14 @@ const waLink = buildWhatsAppLink(whatsappNumber, `Hola ${name}, quiero informaci
   <div class="team-specialties">
     {specialties.map((s) => <span class="tag">{s}</span>)}
   </div>
-  <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
-    💬 Contactar
-  </a>
+  <div class="team-contact">
+    <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
+      💬 WhatsApp
+    </a>
+    <a href={tgLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
+      ✈️ Telegram
+    </a>
+  </div>
 </article>
 
 <style>
@@ -43,5 +50,6 @@ const waLink = buildWhatsAppLink(whatsappNumber, `Hola ${name}, quiero informaci
     background: var(--color-bg-alt); border: 1px solid var(--color-border);
     padding: .2rem .6rem; border-radius: 20px; font-size: .8rem;
   }
-  .team-wa { width: 100%; margin-top: auto; }
+  .team-contact { display: flex; gap: .5rem; width: 100%; margin-top: auto; }
+  .team-wa { flex: 1; }
 </style>

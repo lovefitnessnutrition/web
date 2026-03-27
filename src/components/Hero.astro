@@ -1,8 +1,10 @@
 ---
 import { site } from "../config/site";
 import { buildWhatsAppLink } from "../utils/whatsapp";
+import { buildTelegramLink } from "../utils/telegram";
 
 const waLink = buildWhatsAppLink(site.whatsappNumberMain, site.whatsappDefaultMessage);
+const tgLink = buildTelegramLink(site.whatsappNumberMain);
 ---
 
 <section class="hero">
@@ -15,6 +17,9 @@ const waLink = buildWhatsAppLink(site.whatsappNumberMain, site.whatsappDefaultMe
     <div class="hero-ctas">
       <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
         💬 WhatsApp
+      </a>
+      <a href={tgLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        ✈️ Telegram
       </a>
       <a href="#cal-booking" class="btn btn-outline">
         📅 Reservar cita

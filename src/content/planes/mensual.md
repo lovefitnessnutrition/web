@@ -1,6 +1,6 @@
 ---
 title: "Plan Mensual"
-price: "59 €"
+price: "90 €"
 period: "mes"
 features:
   - "Plan nutricional personalizado"
