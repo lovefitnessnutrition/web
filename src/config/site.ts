@@ -26,7 +26,7 @@ export const site = {
   instagramProfileUrl: "https://www.instagram.com/lovefitnessincouple/",
 
   // Instagram widget embed HTML (snippet del proveedor)
-  instagramWidgetEmbedHtml: `<div class="embedsocial-hashtag" data-ref="1d25b6627842d0b3f0b1bccee2474db603b0cd19" data-dynamicload="yes" data-lazyload="yes"></div> <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); </script>`,
+  instagramWidgetEmbedHtml: `<div class="embedsocial-hashtag" data-ref="abf6726f1ce402ad21b1401883b54e2bbb6d823d"> <a class="feed-powered-by-es feed-powered-by-es-slider-img es-widget-branding" href="https://embedsocial.com/instagram-widget/" target="_blank" title="Instagram widget" > <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial"> <div class="es-widget-branding-text">Instagram widget</div> </a> </div> <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); </script>`,
 
   // Email de contacto
   email: "info@lfn-nutricion.com",
