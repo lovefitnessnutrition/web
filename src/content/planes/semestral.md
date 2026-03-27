@@ -1,6 +1,6 @@
 ---
-title: "Plan Trimestral"
-price: "240 €"
+title: "Plan Semestral"
+price: "420 €"
 period: "trimestre"
 features:
   - "Plan nutricional personalizado"
@@ -9,7 +9,8 @@ features:
   - "Seguimiento por WhatsApp"
   - "Ajustes según progreso"
   - "Descuento respecto al mensual"
+  - "Puedes pagarlo en 2 veces"
 ctaLabel: "Empezar ahora"
 ctaHref: "/contacto"
-order: 2
+order: 3
 ---

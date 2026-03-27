@@ -1,6 +1,6 @@
 ---
-title: "Primera Visita"
-price: "Gratis"
+title: "Primer mes"
+price: "110 €"
 period: "única"
 features:
   - "Evaluación inicial completa"

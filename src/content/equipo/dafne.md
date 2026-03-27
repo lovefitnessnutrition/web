@@ -1,7 +1,7 @@
 ---
 name: "Dafne Andueza"
 role: "Dietista-Nutricionista"
-bio: "Graduada en Nutrición Humana y Dietética. Especializada en nutrición deportiva y cambio de hábitos. Más de 5 años de experiencia acompañando a pacientes en sus objetivos de salud."
+bio: "Graduada en Nutrición Humana y Dietética. Especializada en nutrición deportiva y cambio de hábitos. Más de 8 años de experiencia acompañando a pacientes en sus objetivos de salud. Y muchas cosas mas..."
 specialties:
   - "Nutrición deportiva"
   - "Pérdida de peso"
