@@ -1,5 +1,5 @@
 {
-  "name": "lfn-web",
+  "name": "lfnweb",
   "compatibility_date": "2026-03-09",
   // For Cloudflare Pages (static output)
   "pages_build_output_dir": "./dist"
