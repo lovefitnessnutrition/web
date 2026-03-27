@@ -1,12 +1,12 @@
 ---
-name: "Laura Fernández"
-role: "Nutricionista"
+name: "Dafne Andueza"
+role: "Dietista-Nutricionista"
 bio: "Graduada en Nutrición Humana y Dietética. Especializada en nutrición deportiva y cambio de hábitos. Más de 5 años de experiencia acompañando a pacientes en sus objetivos de salud."
 specialties:
   - "Nutrición deportiva"
   - "Pérdida de peso"
   - "Cambio de hábitos"
 photo: "/team/laura.jpg"
-whatsappNumber: "34600111222"
+whatsappNumber: "34646886035"
 order: 1
 ---

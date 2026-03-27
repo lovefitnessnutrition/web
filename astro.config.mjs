@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://lfnweb.lovefitnessnutrition.workers.dev',
+  site: 'https://web-1zx.pages.dev',
   output: 'static',
 });

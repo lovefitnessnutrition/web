@@ -1,12 +1,12 @@
 export const site = {
-  siteName: "LFN Nutrición y Entrenamiento",
+  siteName: "LoveFitness: Nutrición y Entrenamiento",
 
   // WhatsApp principal (E164 sin "+")
-  whatsappNumberMain: "34600111222",
+  whatsappNumberMain: "34646886035",
   whatsappDefaultMessage: "Hola, quiero información sobre vuestros planes de nutrición y entrenamiento.",
 
   // Dirección física
-  addressText: "Calle Ejemplo 123, 08001 Barcelona",
+  addressText: "Av. de las Arcas del Agua 7, 28905 Getafe, Madrid",
 
   // Google Maps – URL del iframe "Insertar mapa"
   googleMapsEmbedSrc:
@@ -29,8 +29,8 @@ export const site = {
   instagramWidgetEmbedHtml: `<div class="embedsocial-hashtag" data-ref="abf6726f1ce402ad21b1401883b54e2bbb6d823d"> <a class="feed-powered-by-es feed-powered-by-es-slider-img es-widget-branding" href="https://embedsocial.com/instagram-widget/" target="_blank" title="Instagram widget" > <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial"> <div class="es-widget-branding-text">Instagram widget</div> </a> </div> <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); </script>`,
 
   // Email de contacto
-  email: "info@lfn-nutricion.com",
+  email: "dafneandueza15@gmail.com",
 
   // Teléfono
-  phone: "+34 600 111 222",
+  phone: "+34 646 886 035",
 } as const;
