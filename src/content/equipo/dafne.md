@@ -6,7 +6,7 @@ specialties:
   - "Nutrición deportiva"
   - "Pérdida de peso"
   - "Cambio de hábitos"
-photo: "/team/laura.jpg"
+photo: "/team/dafne.png"
 whatsappNumber: "34646886035"
 order: 1
 ---

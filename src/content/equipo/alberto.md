@@ -6,7 +6,7 @@ specialties:
   - "Entrenamiento funcional"
   - "Readaptación deportiva"
   - "Fuerza e hipertrofia"
-photo: "/team/marc.jpg"
+photo: "/team/alberto.png"
 whatsappNumber: "34655147375"
 order: 2
 ---

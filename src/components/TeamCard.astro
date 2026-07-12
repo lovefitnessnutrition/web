@@ -17,30 +17,40 @@ const tgLink = buildTelegramLink(whatsappNumber);
 ---
 
 <article class="team-card card">
-  <img src={photo} alt={`Foto de ${name}`} class="team-photo" loading="lazy" decoding="async" width="280" height="280" />
-  <h3 class="team-name">{name}</h3>
-  <p class="team-role">{role}</p>
-  <p class="team-bio">{bio}</p>
-  <div class="team-specialties">
-    {specialties.map((s) => <span class="tag">{s}</span>)}
-  </div>
-  <div class="team-contact">
-    <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
-      💬 WhatsApp
-    </a>
-    <a href={tgLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
-      ✈️ Telegram
-    </a>
+  <img src={photo} alt={`Foto de ${name}`} class="team-photo" loading="lazy" decoding="async" width="600" height="380" />
+  <div class="team-body">
+    <h3 class="team-name">{name}</h3>
+    <p class="team-role">{role}</p>
+    <p class="team-bio">{bio}</p>
+    <div class="team-specialties">
+      {specialties.map((s) => <span class="tag">{s}</span>)}
+    </div>
+    <div class="team-contact">
+      <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
+        💬 WhatsApp
+      </a>
+      <a href={tgLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
+        ✈️ Telegram
+      </a>
+    </div>
   </div>
 </article>
 
 <style>
   .team-card {
-    display: flex; flex-direction: column; align-items: center; text-align: center;
+    display: flex; flex-direction: column; text-align: center;
+    overflow: hidden;
+    padding: 0;
   }
   .team-photo {
-    width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
-    margin-bottom: 1rem; background: var(--color-bg-alt);
+    width: 100%; height: 240px;
+    object-fit: cover;
+    object-position: center 22%; /* faces sit in the upper part of the photo */
+    background: var(--color-bg-alt);
+  }
+  .team-body {
+    display: flex; flex-direction: column; flex: 1;
+    padding: 1.5rem;
   }
   .team-name { font-size: 1.15rem; margin-bottom: .25rem; }
   .team-role { color: var(--color-primary); font-weight: 600; margin-bottom: .75rem; font-size: .95rem; }

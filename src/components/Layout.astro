@@ -21,7 +21,13 @@ const pageTitle = title === site.siteName ? title : `${title} | ${site.siteName}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#a21caf" />
+    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline>
       // Apply saved theme immediately to prevent flash
       (function(){
@@ -36,7 +42,7 @@ const pageTitle = title === site.siteName ? title : `${title} | ${site.siteName}
     <header class="site-header">
       <nav class="nav-container">
         <a href="/" class="nav-logo">
-          <img src="/logo.svg" alt="" class="nav-logo-img" width="32" height="32" loading="lazy" decoding="async" fetchpriority="auto" />
+          <span class="nav-logo-img" aria-hidden="true"></span>
           {site.siteName}
         </a>
         <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -95,36 +101,56 @@ const pageTitle = title === site.siteName ? title : `${title} | ${site.siteName}
 </html>
 
 <style is:global>
+  /* ── Fonts (self-hosted, latin subset) ───────────────── */
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900; /* variable font: covers all weights */
+    font-display: swap;
+    src: url('/fonts/inter.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/poppins-700.woff2') format('woff2');
+  }
+
   /* ── Reset & base ────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --color-primary: #2d6a4f;
-    --color-primary-light: #40916c;
-    --color-primary-dark: #1b4332;
-    --color-accent: #52b788;
+    --color-primary: #a21caf;
+    --color-primary-light: #c026d3;
+    --color-primary-dark: #701a75;
+    --color-accent: #d946ef;
+    --color-price: #db2777; /* rose variation of accent, for plan prices */
     --color-bg: #ffffff;
     --color-bg-alt: #f5f7f5;
     --color-text: #1a1a1a;
     --color-text-muted: #555;
     --color-border: #ddd;
-    --font-stack: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-stack: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Poppins', 'Inter', system-ui, sans-serif;
     --max-width: 1300px;
     --radius: 10px;
     --shadow: 0 2px 8px rgba(0,0,0,.08);
   }
 
   [data-theme="dark"] {
-    --color-primary: #52b788;
-    --color-primary-light: #74c69d;
-    --color-primary-dark: #95d5b2;
-    --color-accent: #40916c;
-    --color-bg: #1a1a2e;
-    --color-bg-alt: #16213e;
-    --color-text: #e0e0e0;
-    --color-text-muted: #a0a0a0;
-    --color-border: #2a2a4a;
-    --shadow: 0 2px 8px rgba(0,0,0,.3);
+    /* Gym / iron aesthetic: matte charcoal base + fuchsia-purple accent */
+    --color-primary: #a855f7;
+    --color-primary-light: #c084fc;
+    --color-primary-dark: #d8b4fe;
+    --color-accent: #d946ef;
+    --color-price: #f472b6; /* rose variation of accent, for plan prices */
+    --color-bg: #121312;
+    --color-bg-alt: #1c1e1c;
+    --color-text: #ededed;
+    --color-text-muted: #9b9e9b;
+    --color-border: #2c2f2c;
+    --shadow: 0 2px 10px rgba(0,0,0,.5);
   }
 
   html { scroll-behavior: smooth; }
@@ -139,6 +165,15 @@ const pageTitle = title === site.siteName ? title : `${title} | ${site.siteName}
   img { max-width: 100%; height: auto; display: block; }
   a { color: var(--color-primary); text-decoration: none; }
   a:hover { color: var(--color-primary-light); }
+
+  /* Display font for headings, wordmark and prices */
+  h1, h2, h3, h4,
+  .nav-logo,
+  .price-amount {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
 
   /* ── Header / Nav ───────────────────────────────────── */
   .site-header {
@@ -158,7 +193,14 @@ const pageTitle = title === site.siteName ? title : `${title} | ${site.siteName}
     display: flex; align-items: center; gap: .5rem;
   }
   .nav-logo-img {
-    width: 32px; height: 32px; border-radius: 4px;
+    display: inline-block;
+    width: 36px; height: 32px;
+    flex-shrink: 0;
+    /* Recolor the white source logo to the brand color; follows the theme
+       (matches the wordmark, which also uses --color-primary-dark) */
+    background-color: var(--color-primary-dark);
+    -webkit-mask: url('/logo.png') center / contain no-repeat;
+            mask: url('/logo.png') center / contain no-repeat;
   }
   .nav-right {
     display: flex; align-items: center; gap: 1rem;

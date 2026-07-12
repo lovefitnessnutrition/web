@@ -1,0 +1,42 @@
+---
+// Testimonios reales recogidos de la web anterior de Love Fitness Nutrition.
+const testimonials = [
+  {
+    name: "Miguel Ángel Guerrero",
+    text: "Me ha encantado la crema de arroz de Lacasitos. La atención al cliente es de 10. Muy top la manera de informar sobre entrenamiento y nutrición. La verdad es que así es imposible no ganar clientes. Lo recomiendo 100%, he conseguido ganar 2kg de masa muscular limpios simplemente siguiendo el plan de nutrición. Espectacular",
+  },
+  {
+    name: "David Laso",
+    text: "Dos grandes profesionales, llevo 2 años trabajando con ellos y un trato familiar e inmejorable. Gran asesoramiento en nutrición, fitness y preparación de oposiciones además de una gran variedad de suplementos deportivos para alcanzar tus metas.",
+  },
+  {
+    name: "Elisabeth",
+    text: "Tienda de nutrición y suplementación deportiva, entre otros servicios, para mí es la tienda de confianza cuando compro cualquier producto bien sea harina de avena, de arroz o proteína, tienes magnífico asesoramiento y lo importante que la pareja que lo lleva, Dafne y Alberto, es pura pasión por el deporte muy agradables y cercanos. 100% recomendable y fiable!!",
+  },
+  {
+    name: "Jorge Pérez",
+    text: "5 estrellas son pocas para las que se merecen. Grandes profesionales que ofrecen un servicio inmejorable en todos los aspectos, y una atención constante a sus clientes. Por si eso fuera poco, cuentan con una gama de productos de nutrición y suplementación deportiva de primera calidad.",
+  },
+];
+---
+
+<div class="testimonials-grid">
+  {testimonials.map((t) => (
+    <article class="testimonial-card card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">“{t.text}”</p>
+      <strong class="testimonial-author">{t.name}</strong>
+    </article>
+  ))}
+</div>
+
+<style>
+  .testimonials-grid {
+    display: grid; gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .testimonial-card { display: flex; flex-direction: column; gap: .6rem; }
+  .testimonial-stars { color: #f5a623; font-size: .95rem; }
+  .testimonial-text { font-size: .9rem; color: var(--color-text-muted); line-height: 1.5; }
+  .testimonial-author { font-size: .95rem; color: var(--color-text); }
+</style>

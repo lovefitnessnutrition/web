@@ -4,6 +4,7 @@ import Hero from "../components/Hero.astro";
 import PlanCard from "../components/PlanCard.astro";
 import TeamCard from "../components/TeamCard.astro";
 import Reviews from "../components/Reviews.astro";
+import Testimonials from "../components/Testimonials.astro";
 import InstagramWidgetLazy from "../components/InstagramWidgetLazy.astro";
 import FAQ from "../components/FAQ.astro";
 import CalComLazy from "../components/CalComLazy.astro";
@@ -30,6 +31,37 @@ const tgLink = buildTelegramLink(site.whatsappNumberMain);
 <Layout>
   <!-- 1) Hero -->
   <Hero />
+
+  <!-- 1b) Sobre nosotros -->
+  <section class="section" id="sobre-nosotros">
+    <div class="container">
+      <p class="about-kicker">Somos LoveFitness</p>
+      <h2 class="section-title about-title">Elaboramos planes adaptados a cada persona</h2>
+      <div class="grid grid-3 about-grid">
+        <div class="about-item card">
+          <div class="about-item-head">
+            <span class="about-icon">🌿</span>
+            <h3 class="about-item-title">Productos naturales</h3>
+          </div>
+          <p>Trabajamos con productos 100% naturales y de alta calidad.</p>
+        </div>
+        <div class="about-item card">
+          <div class="about-item-head">
+            <span class="about-icon">📈</span>
+            <h3 class="about-item-title">Seguimiento activo</h3>
+          </div>
+          <p>Realizamos seguimiento activo sobre cada uno de nuestros clientes.</p>
+        </div>
+        <div class="about-item card">
+          <div class="about-item-head">
+            <span class="about-icon">🤝</span>
+            <h3 class="about-item-title">Confianza y cercanía</h3>
+          </div>
+          <p>Máxima confianza y cercanía.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- 2) Planes -->
   <section class="section" id="planes">
@@ -99,15 +131,23 @@ const tgLink = buildTelegramLink(site.whatsappNumberMain);
     </div>
   </section>
 
-  <!-- 7) Reseñas -->
-  <section class="section" id="resenas">
+  <!-- 7) Testimonios -->
+  <section class="section" id="testimonios">
     <div class="container">
-      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <h2 class="section-title">Lo que dicen de nosotros</h2>
+      <Testimonials />
+    </div>
+  </section>
+
+  <!-- 8) Reseñas de Google -->
+  <section class="section" id="resenas" style="background:var(--color-bg-alt);">
+    <div class="container">
+      <h2 class="section-title">Reseñas en Google</h2>
       <Reviews />
     </div>
   </section>
 
-  <!-- 8) Contacto + Mapa -->
+  <!-- 9) Contacto + Mapa -->
   <section class="section" id="contacto">
     <div class="container">
       <h2 class="section-title">Contacto</h2>
@@ -132,6 +172,30 @@ const tgLink = buildTelegramLink(site.whatsappNumberMain);
 </Layout>
 
 <style>
+  .about-kicker {
+    text-transform: uppercase; letter-spacing: .08em; font-size: .8rem;
+    font-weight: 700; color: var(--color-primary); margin-bottom: .35rem;
+  }
+  .about-title { margin-bottom: 2rem; }
+  .about-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  @media (min-width: 1200px) {
+    .about-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .about-item {
+    display: flex; flex-direction: column; gap: .6rem;
+    font-size: 1rem; color: var(--color-text);
+  }
+  .about-item-head {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .about-icon { font-size: 1.75rem; line-height: 1; }
+  .about-item-title {
+    font-size: 1.1rem;
+    color: var(--color-primary-dark);
+  }
+
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
