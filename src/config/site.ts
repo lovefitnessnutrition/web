@@ -1,5 +1,5 @@
 export const site = {
-  siteName: "LoveFitness: Nutrición y Entrenamiento",
+  siteName: "LoveFitnessNutrition",
 
   // WhatsApp principal (E164 sin "+")
   whatsappNumberMain: "34646886035",

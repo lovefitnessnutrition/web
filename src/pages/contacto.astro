@@ -5,6 +5,9 @@ import CalComLazy from "../components/CalComLazy.astro";
 import { site } from "../config/site";
 import { buildWhatsAppLink } from "../utils/whatsapp";
 import { buildTelegramLink } from "../utils/telegram";
+import WhatsAppIcon from "../components/WhatsAppIcon.astro";
+import TelegramIcon from "../components/TelegramIcon.astro";
+import Icon from "../components/Icon.astro";
 
 const waLink = buildWhatsAppLink(site.whatsappNumberMain, site.whatsappDefaultMessage);
 const tgLink = buildTelegramLink(site.whatsappNumberMain);
@@ -18,27 +21,27 @@ const tgLink = buildTelegramLink(site.whatsappNumberMain);
       <div class="contact-layout">
         <div class="contact-info">
           <div class="contact-item">
-            <h3>📞 Teléfono</h3>
+            <h3><Icon name="phone" class="gap" />Teléfono</h3>
             <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a>
           </div>
           <div class="contact-item">
-            <h3>✉️ Email</h3>
+            <h3><Icon name="mail" class="gap" />Email</h3>
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </div>
           <div class="contact-item">
-            <h3>💬 WhatsApp</h3>
+            <h3><WhatsAppIcon />WhatsApp</h3>
             <a href={waLink} target="_blank" rel="noopener noreferrer">
               Escríbenos por WhatsApp
             </a>
           </div>
           <div class="contact-item">
-            <h3>✈️ Telegram</h3>
+            <h3><TelegramIcon />Telegram</h3>
             <a href={tgLink} target="_blank" rel="noopener noreferrer">
               Escríbenos por Telegram
             </a>
           </div>
           <div class="contact-item">
-            <h3>📍 Dirección</h3>
+            <h3><Icon name="map-pin" class="gap" />Dirección</h3>
             <p>{site.addressText}</p>
           </div>
           <div class="contact-links">

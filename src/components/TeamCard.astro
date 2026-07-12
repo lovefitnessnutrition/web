@@ -1,6 +1,8 @@
 ---
 import { buildWhatsAppLink } from "../utils/whatsapp";
 import { buildTelegramLink } from "../utils/telegram";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+import TelegramIcon from "./TelegramIcon.astro";
 
 interface Props {
   name: string;
@@ -32,10 +34,10 @@ const tgLink = buildTelegramLink(whatsappNumber);
     </div>
     <div class="team-contact">
       <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
-        💬 WhatsApp
+        <WhatsAppIcon />WhatsApp
       </a>
       <a href={tgLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary team-wa">
-        ✈️ Telegram
+        <TelegramIcon />Telegram
       </a>
     </div>
   </div>

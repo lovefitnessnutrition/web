@@ -2,6 +2,9 @@
 import { site } from "../config/site";
 import { buildWhatsAppLink } from "../utils/whatsapp";
 import { buildTelegramLink } from "../utils/telegram";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+import TelegramIcon from "./TelegramIcon.astro";
+import Icon from "./Icon.astro";
 
 const waLink = buildWhatsAppLink(site.whatsappNumberMain, site.whatsappDefaultMessage);
 const tgLink = buildTelegramLink(site.whatsappNumberMain);
@@ -15,14 +18,14 @@ const tgLink = buildTelegramLink(site.whatsappNumberMain);
       Planes personalizados para alcanzar tus objetivos de salud, rendimiento y bienestar.
     </p>
     <div class="hero-ctas">
-      <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        💬 WhatsApp
+      <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <WhatsAppIcon />WhatsApp
       </a>
-      <a href={tgLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        ✈️ Telegram
+      <a href={tgLink} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <TelegramIcon />Telegram
       </a>
       <a href="#cal-booking" class="btn btn-outline">
-        📅 Reservar cita
+        <Icon name="calendar" class="gap" />Reservar cita
       </a>
     </div>
   </div>
