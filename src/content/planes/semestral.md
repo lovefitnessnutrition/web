@@ -1,7 +1,7 @@
 ---
 title: "Plan Semestral"
 price: "420 €"
-period: "trimestre"
+period: "semestre"
 features:
   - "Plan nutricional personalizado"
   - "Revisión semanal"
