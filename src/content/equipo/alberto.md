@@ -9,4 +9,6 @@ specialties:
 photo: "/team/alberto.png"
 whatsappNumber: "34655147375"
 order: 2
+accent: "#2e9ac4"
+glow: true
 ---

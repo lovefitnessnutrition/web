@@ -24,6 +24,8 @@ const equipo = defineCollection({
     photo: z.string(),
     whatsappNumber: z.string(),
     order: z.number().optional(),
+    accent: z.string().optional(), // CSS color for the card border
+    glow: z.boolean().optional(), // add an outer glow in the accent color
   }),
 });
 

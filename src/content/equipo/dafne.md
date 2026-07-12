@@ -9,4 +9,6 @@ specialties:
 photo: "/team/dafne.png"
 whatsappNumber: "34646886035"
 order: 1
+accent: "#e14d8f"
+glow: true
 ---

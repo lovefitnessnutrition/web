@@ -9,14 +9,19 @@ interface Props {
   specialties: string[];
   photo: string;
   whatsappNumber: string;
+  accent?: string;
+  glow?: boolean;
 }
 
-const { name, role, bio, specialties, photo, whatsappNumber } = Astro.props;
+const { name, role, bio, specialties, photo, whatsappNumber, accent, glow } = Astro.props;
 const waLink = buildWhatsAppLink(whatsappNumber, `Hola ${name}, quiero información.`);
 const tgLink = buildTelegramLink(whatsappNumber);
 ---
 
-<article class="team-card card">
+<article
+  class:list={["team-card", "card", { "has-accent": accent, "has-glow": accent && glow }]}
+  style={accent ? `--card-accent: ${accent}` : undefined}
+>
   <img src={photo} alt={`Foto de ${name}`} class="team-photo" loading="lazy" decoding="async" width="600" height="380" />
   <div class="team-body">
     <h3 class="team-name">{name}</h3>
@@ -41,6 +46,19 @@ const tgLink = buildTelegramLink(whatsappNumber);
     display: flex; flex-direction: column; text-align: center;
     overflow: hidden;
     padding: 0;
+  }
+  /* Optional per-card accent border (color from the `accent` field) */
+  .team-card.has-accent {
+    border: 2px solid var(--card-accent);
+  }
+  /* Optional outer glow in the same accent color (when `glow` is true) */
+  .team-card.has-glow {
+    box-shadow: 0 10px 34px -8px color-mix(in srgb, var(--card-accent) 55%, transparent);
+    transition: box-shadow .25s ease, transform .25s ease;
+  }
+  .team-card.has-glow:hover {
+    box-shadow: 0 16px 44px -6px color-mix(in srgb, var(--card-accent) 75%, transparent);
+    transform: translateY(-3px);
   }
   .team-photo {
     width: 100%; height: 240px;
