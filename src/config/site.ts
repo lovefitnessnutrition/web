@@ -20,7 +20,8 @@ export const site = {
     "https://www.google.com/maps/place/?q=place_id:ChIJ1ciLHn-KQQ0RBpdzQGpBshE",
 
   // Cal.com URL
-  calUrl: "https://cal.com/llalu/revision",
+  //calUrl: "https://cal.com/llalu/revision",
+  calUrl: "https://cal.com/lovefitnessnutrition/revision",
 
   // Instagram
   instagramProfileUrl: "https://www.instagram.com/lovefitnessincouple/",
