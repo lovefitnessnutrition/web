@@ -291,10 +291,7 @@ const pageTitle = title === site.siteName ? title : `${title} | ${site.siteName}
   .grid {
     display: grid; gap: 1.5rem;
   }
-  .grid-3 { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-  @media (min-width: 1200px) {
-    .grid-3 { grid-template-columns: repeat(4, 1fr); }
-  }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 340px)); justify-content: center; }
   .grid-2 { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); max-width: 800px; margin: 0 auto; }
 
   .card {
